@@ -5,6 +5,8 @@ import 'package:flutter_bloc_article/common/auth_text_field.dart';
 import 'login_cubit.dart';
 import 'login_state.dart';
 import 'package:formz/formz.dart';
+import 'package:flutter_bloc_article/auth_models/password.dart';
+import 'package:flutter_bloc_article/auth_models/email.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({Key key}) : super(key: key);
@@ -81,6 +83,7 @@ class _EmailInputField extends StatelessWidget {
           hint: 'Email',
           key: const Key('loginForm_emailInput_textField'),
           keyboardType: TextInputType.emailAddress,
+          error: state.email.error.name,
           onChanged: (email) => context.read<LoginCubit>().emailChanged(email),
         );
       },
@@ -100,6 +103,7 @@ class _PasswordInputField extends StatelessWidget {
           isPasswordField: true,
           key: const Key('loginForm_passwordInput_textField'),
           keyboardType: TextInputType.text,
+          error: state.password.error.name,
           onChanged: (password) =>
               context.read<LoginCubit>().passwordChanged(password),
         );
